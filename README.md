@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Allan Gilber
+- Leticia Agante
+- Tainá Soares
 
 Link do Surge: www.link.com.br
 
