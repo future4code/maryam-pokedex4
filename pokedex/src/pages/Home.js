@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import styled  from 'styled-components'
 import {CardHome} from "../components/CardHome/CardHome"
+import Header from '../components/Header/Header'
 
 const HeaderHome = styled.div`
  height: 10vh;
@@ -48,9 +49,7 @@ const Home = () => {
 
     return (
         <div>
-            <HeaderHome>
-                <h1>Header</h1>
-            </HeaderHome>
+            <Header/>
             <BodyHomeConatiner>
                 {pokeList}
             </BodyHomeConatiner>

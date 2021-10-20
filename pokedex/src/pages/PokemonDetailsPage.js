@@ -1,24 +1,14 @@
 import React from 'react'
 import Imagem from '../img/7.png'
-import { GeneralContainer, Header, ElementContainer, FirstContainer, SecondContainer, ThirdContainer} from './PokemonDetailsPageStyle'
+import { ElementContainer, FirstContainer, SecondContainer, ThirdContainer} from './PokemonDetailsPageStyle'
+import Header from '../components/Header/Header'
 
 const PokemonDetailsPage = () => {
     return (
         <div>
-            <Header>
-                <button>
-                    Voltar
-                </button>
-
-                <h1>
-                    Nome do Pokemon
-                </h1>
-
-                <button>
-                    Adicionar/Remover da Pokedex
-                </button>
-            </Header>
+            
             <ElementContainer>
+            <Header/>
                 <div>
                 <FirstContainer>
 
