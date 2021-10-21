@@ -24,9 +24,6 @@ export const CardHome = (props) =>{
         })
     }
 
-    
-
-
     return(
         <CardHomeContainer>
             <ContainerNamePicture>
