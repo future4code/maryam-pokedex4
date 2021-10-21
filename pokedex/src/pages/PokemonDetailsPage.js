@@ -12,7 +12,7 @@ const PokemonDetailsPage = () => {
                 <div>
                 <FirstContainer>
 
-                    <img src={Imagem}/>
+                    <img src={Imagem}/> 
                     <img src={Imagem}/>
 
                 </FirstContainer>
