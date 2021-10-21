@@ -1,24 +1,50 @@
-import React from 'react'
-import Imagem from '../img/7.png'
-import { ElementContainer, FirstContainer, SecondContainer, ThirdContainer} from './PokemonDetailsPageStyle'
-import Header from '../components/Header/Header'
+import React, {useEffect, useState} from 'react';
+import Imagem from '../img/7.png';
+import { ElementContainer, FirstContainer, SecondContainer, ThirdContainer} from './PokemonDetailsPageStyle';
+import Header from '../components/Header/Header';
+import {useParams} from 'react-router-dom';
+import axios from 'axios';
 
 const PokemonDetailsPage = () => {
+
+    const [pokemonDetails, setPokemonDetails] = useState()
+
+    const pathParams = useParams()
+
+    useEffect(() => {
+
+        const url = `https://pokeapi.co/api/v2/pokemon/${pathParams.id}`
+
+        axios.get(url).then((pokemon) =>{
+            console.log(pokemon)
+            setPokemonDetails(pokemon.data)
+            console.log(pokemonDetails, "pokemon details")
+        }).catch((error) =>{
+            console.log(error)
+        })
+    }, [])
+
+    const { id } = useParams()
     return (
         <div>
-            
+
+            <Header
+            page='pokemonDetails'
+            />
+
             <ElementContainer>
-            <Header/>
+
                 <div>
                 <FirstContainer>
 
-                    <img src={Imagem}/>
-                    <img src={Imagem}/>
+                    <img src={pokemonDetails.sprites.versions['generation-v']['black-white'].animated.front_default} alt="Pokemon Picture"/>
+                    <img src={pokemonDetails.sprites.versions['generation-v']['black-white'].animated.back_default} alt="Pokemon Picture"/>
 
                 </FirstContainer>
+
                 <SecondContainer>
                     <h5>Stats</h5>
-                    <p>HP:</p>
+                    <p>HP: ${pokemonDetails.stats[0].base_stat}</p>
                     <p>attack:</p>
                     <p>defense:</p>
                     <p>special-attack:</p>

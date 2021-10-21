@@ -35,7 +35,7 @@ export const CardHome = (props) =>{
             </ContainerNamePicture>
             <HomeButtons>
                 <button>Adicionar</button>
-                <button onClick={()=>goToPage(history, "/pokemon/details")}>Detalhes</button>
+                <button onClick={()=>goToPage(history, `/pokemon/details/${pokemon.id}`)}>Detalhes</button>
             </HomeButtons>
         </CardHomeContainer>
     )

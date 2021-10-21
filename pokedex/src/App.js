@@ -7,6 +7,7 @@ box-sizing: border-box;
 margin: 0;
 height: 100vh;
 width: 100vw;
+border-radius: 3px;
 }
 div{
   height: 100%;
