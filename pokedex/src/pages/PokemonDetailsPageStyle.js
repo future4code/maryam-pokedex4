@@ -43,6 +43,31 @@ div{
     width: 90%;
 }
 `
+export const MoveContainerStyle = styled.div`
+display: flex;
+flex-direction: column;
+div{
+    flex-direction: row !important;
+    border: none !important;
+    width: 100%;
+    padding: 0 !important;
+}
+div> p{
+    width: 10%;
+    :nth-child(1){
+        font-weight: 800;
+    }
+    :nth-child(2){
+        width: 90%;
+    }
+}
+div > h5{
+    width: 10%;
+    :nth-child(2){
+        width: 90%;
+    }
+}
+`
 
 export const FirstContainer = styled.div`
 display: flex;
@@ -70,7 +95,7 @@ height: 80%;
 padding: 20px;
 border: 1px solid black;
 text-align: center;
-h5{
+h3{
     width: 100%;
     text-align: center;
 }
@@ -98,6 +123,9 @@ div{
     height: 90% !important;
     text-align: center;
     padding: 20px;
+    :nth-child(1){
+        padding: 0;
+    }
 }
 p{
     width: 100%;

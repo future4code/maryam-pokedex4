@@ -12,6 +12,38 @@ export const Return = styled.div`
     align-items: center;
     text-align: center;
     margin: 0;
+    p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
+    :hover{
+    transform: translateY(-0.25em);
+    }
+`
+export const GoHomeButton = styled.div`
+    border-radius: 4px;
+    z-index: 2;
+    cursor: pointer;
+    height: 50%;
+    width: 20%;
+    background-color: #DCDCDC;
+    color: black;
+    border: none;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
     :hover{
     transform: translateY(-0.25em);
     }
@@ -27,14 +59,14 @@ height: 10%;
 min-height: 80px;
 padding: 0 20px;
 border: 1px solid black;
-background-color: #FF0000;
+background-color: #d62b2b;
 button{
     border-radius: 4px;
     z-index: 2;
     cursor: pointer;
     height: 50%;
     width: 15%;
-    background-color: #202124;
+    background-color: black;
     color: #DCDCDC;
     border: none;
     :hover{
@@ -50,5 +82,6 @@ h1{
     right: 0;
     /* width: 70%; */
     text-align: center;
+    color: black;
 }
 `
