@@ -31,7 +31,7 @@ export const CardHome = (props) =>{
                 <img src={pokemon && pokemon.sprites && pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="Pokemon Picture"/>
             </ContainerNamePicture>
             <HomeButtons>
-                <button>Adicionar</button>
+                <button onClick={props.onClickAdd}>Adicionar</button>
                 <button onClick={()=>goToPage(history, `/pokemon/details/${pokemon.id}`)}>Detalhes</button>
             </HomeButtons>
         </CardHomeContainer>

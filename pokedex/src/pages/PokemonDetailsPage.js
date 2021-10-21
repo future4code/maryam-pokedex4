@@ -1,76 +1,153 @@
-import React, {useEffect, useState} from 'react';
-import Imagem from '../img/7.png';
-import { ElementContainer, FirstContainer, SecondContainer, ThirdContainer} from './PokemonDetailsPageStyle';
-import Header from '../components/Header/Header';
-import {useParams} from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import {
+  ElementContainer,
+  FirstContainer,
+  SecondContainer,
+  ThirdContainer,
+  MoveContainerStyle,
+} from "./PokemonDetailsPageStyle";
+import Header from "../components/Header/Header";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const PokemonDetailsPage = () => {
+  const [pokemonDetails, setPokemonDetails] = useState();
 
-    const [pokemonDetails, setPokemonDetails] = useState()
+  const pathParams = useParams();
 
-    const pathParams = useParams()
+  useEffect(() => {
+    const url = `https://pokeapi.co/api/v2/pokemon/${pathParams.id}`;
 
-    useEffect(() => {
+    axios
+      .get(url)
+      .then((pokemon) => {
+        setPokemonDetails(pokemon.data);
+        console.log(pokemon.data, "retorno do get");
+        console.log(pokemonDetails, "pokemon details");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-        const url = `https://pokeapi.co/api/v2/pokemon/${pathParams.id}`
+  console.log(pokemonDetails, "detalhes dos pokes");
 
-        axios.get(url).then((pokemon) =>{
-            console.log(pokemon)
-            setPokemonDetails(pokemon.data)
-            console.log(pokemonDetails, "pokemon details")
-        }).catch((error) =>{
-            console.log(error)
-        })
-    }, [])
+  function captalizeFirstLetter(element){
+    const captalizedWord = element.charAt(0).toUpperCase() + element.slice(1);
+    return (captalizedWord)
+  }
 
-    const { id } = useParams()
-    return (
-        <div>
+  function renderPokemonInitialMoveSet() {
+    const initialMoveSet = pokemonDetails.moves.map((move) => {
+      if (move.version_group_details[0].level_learned_at >= 1) {
+        console.log(move.move.name);
+        return (
+          <div>
+            <p>{move.version_group_details[0].level_learned_at}</p>
+            <p>{captalizeFirstLetter(move.move.name)}</p>
+          </div>
+        );
+      } else {
+        return false;
+      }
+    });
+    const newArray = initialMoveSet.filter((element) => {
+      if (element) {
+        return element;
+      }
+    });
 
-            <Header
-            page='pokemonDetails'
-            />
+    console.log(newArray, "esse array");
+    return newArray.slice(0, 5);
+  }
 
-            <ElementContainer>
+  // const { id } = useParams()
+  return (
+    <div>
+      {pokemonDetails ? (
+        <>
+          <Header page="pokemonDetails" pokemonDetails={pokemonDetails} />
 
+          <ElementContainer>
+            <div>
+              <FirstContainer>
+                <img
+                  src={
+                    pokemonDetails.sprites.versions["generation-v"][
+                      "black-white"
+                    ].animated.front_default
+                  }
+                  alt="Pokemon"
+                />
+                <img
+                  src={
+                    pokemonDetails.sprites.versions["generation-v"][
+                      "black-white"
+                    ].animated.back_default
+                  }
+                  alt="Pokemon"
+                />
+              </FirstContainer>
+
+              <SecondContainer>
+                <h3>Stats</h3>
                 <div>
-                <FirstContainer>
-
-                    <img src={pokemonDetails.sprites.versions['generation-v']['black-white'].animated.front_default} alt="Pokemon Picture"/>
-                    <img src={pokemonDetails.sprites.versions['generation-v']['black-white'].animated.back_default} alt="Pokemon Picture"/>
-
-                </FirstContainer>
-
-                <SecondContainer>
-                    <h5>Stats</h5>
-                    <p>HP: ${pokemonDetails.stats[0].base_stat}</p>
-                    <p>attack:</p>
-                    <p>defense:</p>
-                    <p>special-attack:</p>
-                    <p>special-defense:</p>
-                    <p>speed:</p>
-
-                </SecondContainer>
-
-                <ThirdContainer>
-                    <div>
-                        <p>Type1</p>
-                        <p>Type2</p>
-                    </div>
-                    <div>
-                        <h5>Moves</h5>
-                        <p>move name 1</p>
-                        <p>move name 2</p>
-                        <p>move name 3</p>
-
-                    </div>
-
-                </ThirdContainer>
+                  <p>HP: </p>
+                  <p>{pokemonDetails.stats[0].base_stat}</p>
                 </div>
-            </ElementContainer>
-        </div>
-    )
-}
+                <div>
+                  <p>attack: </p>
+                  <p>{pokemonDetails.stats[1].base_stat}</p>
+                </div>
+                <div>
+                  <p>defense: </p>
+                  <p>{pokemonDetails.stats[2].base_stat}</p>
+                </div>
+                <div>
+                  <p>special-attack: </p>
+                  <p>{pokemonDetails.stats[3].base_stat}</p>
+                </div>
+                <div>
+                  <p>special-defense: </p>
+                  <p>{pokemonDetails.stats[4].base_stat}</p>
+                </div>
+                <div>
+                  <p>speed: </p>
+                  <p>{pokemonDetails.stats[5].base_stat}</p>
+                </div>
+              </SecondContainer>
 
-export default PokemonDetailsPage
+              <ThirdContainer>
+                <div>
+                  {pokemonDetails.types.map((type) => {
+                    return (
+                      <p>
+                        <strong>{type.type.name}</strong>
+                      </p>
+                    );
+                  })}
+                </div>
+                <MoveContainerStyle>
+                  <div>
+                    <h5>Level</h5>
+                    <h5>Moves</h5>
+                  </div>
+                  {renderPokemonInitialMoveSet()}
+                </MoveContainerStyle>
+              </ThirdContainer>
+            </div>
+          </ElementContainer>
+        </>
+      ) : (
+        <>
+          <Header />
+          <ElementContainer>
+            <h1>Loading...</h1>
+          </ElementContainer>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default PokemonDetailsPage;

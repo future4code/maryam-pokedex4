@@ -1,6 +1,8 @@
+import react, { useState } from "react"
 import Router from "./Router/Router"
 import { createGlobalStyle} from 'styled-components'
 import { GlobalContextProvider } from './Global/GlobalContextProvider'
+import { GlobalContext } from "./Global/GlobalContext"
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -8,6 +10,7 @@ box-sizing: border-box;
 margin: 0;
 height: 100vh;
 width: 100vw;
+font-family: "myFont";
 border-radius: 3px;
 }
 div{
@@ -17,12 +20,12 @@ div{
 `
 
 function App() {
+  const [poke, setPoke] = useState([])
   return (
-    <GlobalContextProvider>
+    <GlobalContext.Provider value={{poke, setPoke}}>
       <GlobalStyle/>
       <Router/>
-    </GlobalContextProvider>
-  );
+    </GlobalContext.Provider>  );
 }
 
 export default App;
