@@ -49,7 +49,9 @@ const Home = () => {
 
     return (
         <div>
-            <Header/>
+            <Header
+            page = 'home'
+            />
             <BodyHomeConatiner>
                 {pokeList}
             </BodyHomeConatiner>
