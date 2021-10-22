@@ -8,9 +8,9 @@ Nome dos integrantes:
 Link do Surge: www.link.com.br
 
 O que funciona:
-- Item 1
-- Item 2
+- Renderização entre as 3 páginas
+- Ambas as páginas Home e Pokedex, enviam informação para a página detalhes
+- As funcionalidade de adicionar item a Pokedex e Remover, funcionam perfeitamente
 
 O que não funciona: 
-- Item 3
-- Item 4
+- A implementação da paginação encontra-se incompleta, no momento em que é necessário a troca de página.
