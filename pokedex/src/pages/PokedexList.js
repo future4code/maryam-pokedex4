@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CardPokedex } from "../components/CardPokedex/CardPokedex";
 import { GlobalContext } from "../Global/GlobalContext";
 import Header from "../components/Header/Header";
@@ -18,6 +18,12 @@ const BodyHomeConatiner = styled.div`
 
 const PokedexList = () => {
   const { poke, setPoke } = useContext(GlobalContext);
+
+  // console.log(pokemonDetails, "detalhes dos pokes");
+
+  useEffect(() =>{
+    console.log(poke, 'lista de pokes')
+  })
 
   const removeItem = (itemToRemove) => {
     const position = poke.findIndex((item) => {
@@ -39,7 +45,6 @@ const PokedexList = () => {
     poke.length === 0
       ? <h1>Adicione Pokemons</h1>
       : poke.map((item) => {
-        console.log(poke, 'estes pokes')
           return (
             <CardPokedex
               key={item.name}
