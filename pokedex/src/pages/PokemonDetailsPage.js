@@ -1,4 +1,4 @@
-import React  from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   ElementContainer,
   FirstContainer,
@@ -10,38 +10,55 @@ import Header from "../components/Header/Header";
 import { useParams } from "react-router-dom";
 import { useRequestData } from "../hooks/useRequestData";
 import { BASE_URL } from "../constants/urls";
+import { GlobalContext } from "../Global/GlobalContext";
 
 const PokemonDetailsPage = () => {
-  // const [pokemonDetails, setPokemonDetails] = useState();
+  const { poke, setPoke } = useContext(GlobalContext);
+
+  console.log(poke, "pokemo");
+
   const pathParams = useParams();
-  const pokemonDetails = useRequestData(`${BASE_URL}pokemon/${pathParams.id}`)
+  const pokemonDetails = useRequestData(`${BASE_URL}pokemon/${pathParams.id}`);
 
-  // useEffect(() => {
-  //   const url = `https://pokeapi.co/api/v2/pokemon/${pathParams.id}`;
+  // const [pokemonToAdd, setPokemonToAdd] = useState()
 
-  //   axios
-  //     .get(url)
-  //     .then((pokemon) => {
-  //       setPokemonDetails(pokemon.data);
-  //       console.log(pokemon.data, "retorno do get");
-  //       console.log(pokemonDetails, "pokemon details");
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  const getTheRequestURL = BASE_URL + 'pokemon/' + pathParams.id
+  const itemToAdd = useRequestData(getTheRequestURL)
+  console.log(itemToAdd)
+  const addToPokedex = () => {
 
-  console.log(pokemonDetails, "detalhes dos pokes");
+    const position = poke.findIndex((item) => {
+      return item.name === itemToAdd.name;
+    });
 
-  function captalizeFirstLetter(element){
+    const newAdd = [...poke];
+
+    const newObject = {
+      name: itemToAdd.name,  
+      url: `${BASE_URL}pokemon/${itemToAdd.id}`
+    }
+
+    console.log(newObject, 'novo objt')
+
+    if (position === -1) {
+      newAdd.push({ ...newObject, amount: 1 });
+    } else {
+      alert("Já adicionado!");
+    }
+    console.log(newAdd, "novo adicionado");
+    setPoke(newAdd);
+    console.log(poke, 'objeto final')
+  };
+
+  function captalizeFirstLetter(element) {
     const captalizedWord = element.charAt(0).toUpperCase() + element.slice(1);
-    return (captalizedWord)
+    return captalizedWord;
   }
 
   function renderPokemonInitialMoveSet() {
     const initialMoveSet = pokemonDetails.moves.map((move) => {
       if (move.version_group_details[0].level_learned_at >= 1) {
-        console.log(move.move.name);
+        // console.log(move.move.name);
         return (
           <div>
             <p>{move.version_group_details[0].level_learned_at}</p>
@@ -58,16 +75,19 @@ const PokemonDetailsPage = () => {
       }
     });
 
-    console.log(newArray, "esse array");
+    // console.log(newArray, "esse array");
     return newArray.slice(0, 5);
   }
 
-  // const { id } = useParams()
   return (
     <div>
       {pokemonDetails ? (
         <>
-          <Header page="pokemonDetails" pokemonDetails={pokemonDetails} />
+          <Header 
+          page="pokemonDetails" 
+          pokemonDetails={pokemonDetails}
+          addToPokedex = {addToPokedex}
+          />
 
           <ElementContainer>
             <div>

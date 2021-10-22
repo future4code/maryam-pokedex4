@@ -5,14 +5,12 @@ import { useParams, useHistory } from 'react-router-dom';
 const Header = (props) => {
 
   const pathParams = useParams()
-  // console.log(pathParams)
-  // const argument = ''
+
+  // const idDoPokemon = pathParams.id
 
   const queryString = window.location.href
 
   let history = useHistory()
-
-  console.log(pathParams.activePage)
 
   const handlePageTransition = (parameter) =>{
     history.push(parameter)
@@ -24,8 +22,6 @@ const Header = (props) => {
   }
 
   const hender = () => {
-    console.log(history)
-    console.log(queryString)
     switch(props.page){
       case 'home':
         return(
@@ -52,7 +48,7 @@ const Header = (props) => {
               </Return>
               
               <h1>{renderPokemoNamewithFirstLetterCapitalized()}</h1>
-              <button>
+              <button onClick={() => props.addToPokedex()}>
                 Adicionar/Remover da Pokedex
               </button>
             </>

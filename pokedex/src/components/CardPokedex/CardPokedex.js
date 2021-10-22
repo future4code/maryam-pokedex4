@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CardHomeContainer, ContainerNamePicture, HomeButtons } from "./styled";
 import {useHistory } from 'react-router-dom'
 import { goToPage } from "../../Router/coordinator";
 import { useRequestData } from '../../hooks/useRequestData'
+import { GlobalContext } from "../../Global/GlobalContext";
 
 
 export const CardPokedex = (props) => {
 
+  const { poke, setPoke } = useContext(GlobalContext);
     const history = useHistory()
+
     const pokemon = useRequestData(props.url)
 
     const getPokemonId = () =>{
