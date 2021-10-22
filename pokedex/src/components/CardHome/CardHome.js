@@ -13,7 +13,9 @@ export const CardHome = (props) =>{
         <CardHomeContainer key={props.key}>
             <ContainerNamePicture>
                 <h5>{props.name.toUpperCase()}</h5>
-                <img src={pokemon && pokemon.sprites && pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt=""/>
+                <div>
+                    <img src={pokemon && pokemon.sprites && pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt=""/>
+                </div>
             </ContainerNamePicture>
             <HomeButtons>
                 <button onClick={props.onClickAdd}>Adicionar</button>

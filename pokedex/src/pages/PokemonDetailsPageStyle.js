@@ -9,7 +9,6 @@ align-items: center;
 width: 100%;
 height: 7%;
 min-height: 80px;
-border: 1px solid black;
 button{
     cursor: pointer;
     height: 60%;
@@ -34,7 +33,6 @@ justify-content: space-around;
 align-items: center;
 width: 100%;
 margin-top: 20px;
-border: 1px solid black;
 div{
     display: flex;
     flex-direction: row;
@@ -78,9 +76,11 @@ width: 30% !important;
 height: 80%;
 /* border: 1px solid black; */
 img{
-    border: 1px solid black;
     height: 40%;
     width: 40%;
+    :nth-child(1){
+    margin-bottom: 36px;
+    }
 }
 `
 

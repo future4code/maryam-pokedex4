@@ -1,34 +1,37 @@
-import React, {  useContext } from 'react'
-import { useEffect } from 'react/cjs/react.development'
-import styled  from 'styled-components'
-import {CardHome} from "../components/CardHome/CardHome"
-import Header from '../components/Header/Header'
-import { GlobalContext } from "../Global/GlobalContext"
-import { usePokemonList } from '../hooks/usePokemonList'
-// import Footer from '../components/Footer/Footer'
+import React, { useContext } from "react";
+import { useEffect } from "react/cjs/react.development";
+import styled from "styled-components";
+import { CardHome } from "../components/CardHome/CardHome";
+import Header from "../components/Header/Header";
+import { GlobalContext } from "../Global/GlobalContext";
+import { usePokemonList } from "../hooks/usePokemonList";
+import Footer from "../components/Footer/Footer";
 
 const BodyHomeConatiner = styled.div`
- min-height:90vh;
- width: 100vw;
- display: grid;
- grid-template-columns: repeat(4, 1fr);
- margin: 15px;
- row-gap:10px;
- column-gap: 10px;
-`
+  box-sizing: border-box;
+  overflow: scroll;
+  min-height: 90vh;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, minmax(0, 250px));
+  grid-template-rows: repeat(5, 350px);
+  padding: 15px;
+  row-gap: 10px;
+  column-gap: 10px;
+`;
 
 const Home = () => {
-    const [pokemonsList, total, pages, currentPage, loading]= usePokemonList()
+  const [pokemonsList, total, pages, loading, currentPage] = usePokemonList();
 
-    useEffect(() =>{
-        console.log(pokemonsList, 'lista de poke')
-    }, [pokemonsList])
+  useEffect(() => {
+    console.log(pokemonsList, "lista de poke");
+  }, [pokemonsList]);
 
-    const {poke, setPoke} = useContext(GlobalContext)
-    // console.log(pokemonsList, 'estedaq')
+  const { poke, setPoke } = useContext(GlobalContext);
 
-   const addToPokedex = (itemToAdd) => {
-       console.log(itemToAdd, 'adicionar este')
+  const addToPokedex = (itemToAdd) => {
+    console.log(itemToAdd, "adicionar este");
     const position = poke.findIndex((item) => {
       return item.name === itemToAdd.name;
     });
@@ -38,34 +41,37 @@ const Home = () => {
     if (position === -1) {
       newAdd.push({ ...itemToAdd, amount: 1 });
     } else {
-        alert("Já adicionado!")
+      alert("Já adicionado!");
     }
-    console.log(newAdd, 'novo adicionado')
+    console.log(newAdd, "novo adicionado");
     setPoke(newAdd);
   };
 
+  const pokeList = loading ? (
+    <h1>Loading...</h1>
+  ) : (
+    (console.log(pokemonsList),
+    pokemonsList[currentPage].map((eachPokemon) => {
+      return (
+        <CardHome
+          key={eachPokemon.name}
+          name={eachPokemon.name}
+          url={eachPokemon.url}
+          onClickAdd={() => addToPokedex(eachPokemon)}
+        />
+      );
+    }))
+  );
 
-   const pokeList = loading? (<h1>Loading...</h1>) : (pokemonsList.map((eachPokemon)=>{
-    return(
-    <CardHome key={eachPokemon.name}
-     name={eachPokemon.name}
-     url={eachPokemon.url}
-     onClickAdd ={()=> addToPokedex(eachPokemon)}
-    />
-    )
-}))
+  return (
+    <div>
+      <Header page="home" />
+      <BodyHomeConatiner>
+        {pokeList}
+        {/* <Footer/> */}
+      </BodyHomeConatiner>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <Header
-            page = 'home'
-            />
-            <BodyHomeConatiner>
-                {pokeList}
-            </BodyHomeConatiner>
-
-        </div>
-    )
-}
-
-export default Home
+export default Home;
