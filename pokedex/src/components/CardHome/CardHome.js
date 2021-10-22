@@ -10,7 +10,7 @@ export const CardHome = (props) =>{
     const pokemon = useRequestData(props.url)
 
     return(
-        <CardHomeContainer>
+        <CardHomeContainer key={props.key}>
             <ContainerNamePicture>
                 <h5>{props.name.toUpperCase()}</h5>
                 <img src={pokemon && pokemon.sprites && pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt=""/>

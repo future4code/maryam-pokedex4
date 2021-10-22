@@ -1,9 +1,11 @@
 import React, {  useContext } from 'react'
+import { useEffect } from 'react/cjs/react.development'
 import styled  from 'styled-components'
 import {CardHome} from "../components/CardHome/CardHome"
 import Header from '../components/Header/Header'
 import { GlobalContext } from "../Global/GlobalContext"
 import { usePokemonList } from '../hooks/usePokemonList'
+// import Footer from '../components/Footer/Footer'
 
 const BodyHomeConatiner = styled.div`
  min-height:90vh;
@@ -14,22 +16,16 @@ const BodyHomeConatiner = styled.div`
  row-gap:10px;
  column-gap: 10px;
 `
-const Pagination = styled.div`
- height: 8vh;
- background-color: aqua;
- display: flex;
- justify-content: space-between;
-`
-const PaginationButton = styled.div`
-display:flex;
-`
-const PaginationItem = styled.div`
- margin: 0 10px;
-`
+
 const Home = () => {
-    const [pokemonsList, total, pages, setCurrentPage]= usePokemonList()
+    const [pokemonsList, total, pages, currentPage, loading]= usePokemonList()
+
+    useEffect(() =>{
+        console.log(pokemonsList, 'lista de poke')
+    }, [pokemonsList])
 
     const {poke, setPoke} = useContext(GlobalContext)
+    // console.log(pokemonsList, 'estedaq')
 
    const addToPokedex = (itemToAdd) => {
        console.log(itemToAdd, 'adicionar este')
@@ -49,15 +45,15 @@ const Home = () => {
   };
 
 
-   const pokeList = pokemonsList.map((eachPokemon)=>{
-       return(
-       <CardHome key={eachPokemon.name}
-        name={eachPokemon.name}
-        url={eachPokemon.url}
-        onClickAdd ={()=> addToPokedex(eachPokemon)}
-       />
-       )
-   })
+   const pokeList = loading? (<h1>Loading...</h1>) : (pokemonsList.map((eachPokemon)=>{
+    return(
+    <CardHome key={eachPokemon.name}
+     name={eachPokemon.name}
+     url={eachPokemon.url}
+     onClickAdd ={()=> addToPokedex(eachPokemon)}
+    />
+    )
+}))
 
     return (
         <div>
@@ -67,18 +63,7 @@ const Home = () => {
             <BodyHomeConatiner>
                 {pokeList}
             </BodyHomeConatiner>
-            <Pagination>
-                <div> Qtd{total}</div>
-                <PaginationButton>
-                    <PaginationItem>Preview</PaginationItem>
-                    {pages.map((page)=>(
-                        <PaginationItem key={page} onClick={setCurrentPage}>{page}</PaginationItem>
-                    ))}
-                    <PaginationItem>Next</PaginationItem>
-    
-                </PaginationButton>
 
-            </Pagination>
         </div>
     )
 }

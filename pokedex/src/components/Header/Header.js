@@ -8,8 +8,6 @@ const Header = (props) => {
 
   // const idDoPokemon = pathParams.id
 
-  const queryString = window.location.href
-
   let history = useHistory()
 
   const handlePageTransition = (parameter) =>{
