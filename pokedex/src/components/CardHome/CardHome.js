@@ -1,34 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import React from 'react'
 import {useHistory} from "react-router"
 import { goToPage } from '../../Router/coordinator'
 import {CardHomeContainer, ContainerNamePicture, HomeButtons} from "./styled"
+import { useRequestData } from '../../hooks/useRequestData'
 
 export const CardHome = (props) =>{
     const history = useHistory()
 
-    const[pokemon, setPokemon] = useState()
-
-    useEffect(()=>{
-        getPokemonPictures(props.url)
-    },[])
-
-    const getPokemonPictures = (url) =>{
-
-        axios.get(url)
-        .then((res)=>{
-            setPokemon(res.data)
-        })
-        .catch((error)=>{
-            console.log(error.response)
-        })
-    }
+    const pokemon = useRequestData(props.url)
 
     return(
         <CardHomeContainer>
             <ContainerNamePicture>
                 <h5>{props.name.toUpperCase()}</h5>
-                <img src={pokemon && pokemon.sprites && pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt="Pokemon Picture"/>
+                <img src={pokemon && pokemon.sprites && pokemon.sprites.versions['generation-v']['black-white'].animated.front_default} alt=""/>
             </ContainerNamePicture>
             <HomeButtons>
                 <button onClick={props.onClickAdd}>Adicionar</button>

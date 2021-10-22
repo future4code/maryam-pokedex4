@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import {
   ElementContainer,
   FirstContainer,
@@ -8,27 +8,28 @@ import {
 } from "./PokemonDetailsPageStyle";
 import Header from "../components/Header/Header";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useRequestData } from "../hooks/useRequestData";
+import { BASE_URL } from "../constants/urls";
 
 const PokemonDetailsPage = () => {
-  const [pokemonDetails, setPokemonDetails] = useState();
-
+  // const [pokemonDetails, setPokemonDetails] = useState();
   const pathParams = useParams();
+  const pokemonDetails = useRequestData(`${BASE_URL}pokemon/${pathParams.id}`)
 
-  useEffect(() => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${pathParams.id}`;
+  // useEffect(() => {
+  //   const url = `https://pokeapi.co/api/v2/pokemon/${pathParams.id}`;
 
-    axios
-      .get(url)
-      .then((pokemon) => {
-        setPokemonDetails(pokemon.data);
-        console.log(pokemon.data, "retorno do get");
-        console.log(pokemonDetails, "pokemon details");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  //   axios
+  //     .get(url)
+  //     .then((pokemon) => {
+  //       setPokemonDetails(pokemon.data);
+  //       console.log(pokemon.data, "retorno do get");
+  //       console.log(pokemonDetails, "pokemon details");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   console.log(pokemonDetails, "detalhes dos pokes");
 

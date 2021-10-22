@@ -37,7 +37,7 @@ const PokedexList = () => {
 
   const pokedexList =
     poke.length === 0
-      ? <h1>Carrinho vazio</h1>
+      ? <h1>Adicione Pokemons</h1>
       : poke.map((item) => {
         console.log(poke, 'estes pokes')
           return (
