@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react'
-import axios from "axios"
+import React, {  useContext } from 'react'
 import styled  from 'styled-components'
 import {CardHome} from "../components/CardHome/CardHome"
 import Header from '../components/Header/Header'
 import { GlobalContext } from "../Global/GlobalContext"
+import { usePokemonList } from '../hooks/usePokemonList'
 
 const BodyHomeConatiner = styled.div`
  min-height:90vh;
@@ -15,24 +15,9 @@ const BodyHomeConatiner = styled.div`
  column-gap: 10px;
 `
 const Home = () => {
-    const [pokemonsList, setPokemonsList] = useState([])
+    const pokemonsList= usePokemonList()
+
     const {poke, setPoke} = useContext(GlobalContext)
-
-   const getPokemons = ()=>{
-       const url = "https://pokeapi.co/api/v2/pokemon?limit=151&offset=0"
-
-       axios.get(url)
-       .then((res)=>{
-           setPokemonsList(res.data.results)
-       })
-       .catch((error)=>{
-           console.log(error.response)
-       })
-   }
-
-   useEffect(()=>{
-       getPokemons()
-   },[])
 
    const addToPokedex = (itemToAdd) => {
        console.log(itemToAdd, 'adicionar este')
