@@ -30,8 +30,8 @@ export const GoHomeButton = styled.div`
     cursor: pointer;
     height: 50%;
     width: 20%;
-    background-color: #d62b2b;
-    color: white;
+    background-color: #202124;
+    color: #DCDCDC;
     border: none;
     align-items: center;
     text-align: center;
@@ -66,9 +66,10 @@ button{
     cursor: pointer;
     height: 50%;
     width: 15%;
-    background-color: white;
-    color: #d62b2b;
+    background-color: #202124;
+    color: #DCDCDC;
     border: none;
+    font-weight: 800;
     :hover{
     transform: translateY(-0.25em);
     }

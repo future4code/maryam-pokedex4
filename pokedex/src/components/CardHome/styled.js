@@ -12,9 +12,28 @@ padding: 2px;
 `
 
 export const ContainerNamePicture = styled.div`
- display: flex;
+display: flex;
  flex-direction: column;
  align-items: center;
+ justify-content: flex-start;
+ height: 80%;
+ div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+ }
+ div > img{
+     min-height: 50%;
+     min-width: 50%;
+ }
+ h5{
+     height: 20%;
+     width: 100%;
+     margin: 0;
+     text-align: center;
+ }
 `
 export const HomeButtons = styled.div`
  padding: 5px 0;

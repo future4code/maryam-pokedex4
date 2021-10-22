@@ -8,8 +8,6 @@ const Header = (props) => {
 
   // const idDoPokemon = pathParams.id
 
-  const queryString = window.location.href
-
   let history = useHistory()
 
   const handlePageTransition = (parameter) =>{
@@ -26,7 +24,7 @@ const Header = (props) => {
       case 'home':
         return(
           <>
-            <button onClick={() => handlePageTransition('/pokedex/list')}>Ver minha POKEDEX</button>
+            <button onClick={() => handlePageTransition('/pokedex/list')}>Ver POKEDEX</button>
 
             <h1>Lista de Pokemons</h1>
           </>
@@ -36,7 +34,7 @@ const Header = (props) => {
           <>
             <h1>Pokedex</h1>
             <GoHomeButton onClick={() => history.goBack()}>
-            <p>Voltara para a lista de pokemons</p>
+            <p>Voltar para a lista de pokemons</p>
             </GoHomeButton>
           </>
         )
