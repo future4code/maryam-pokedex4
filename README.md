@@ -5,12 +5,15 @@ Nome dos integrantes:
 - Leticia Agante
 - Tainá Soares
 
-Link do Surge: www.link.com.br
+### O que funciona
+- Botões de navegação
+- Detalhes dos pokemons
+- Histórico de pokemons adicionados
+- Exibição em geral
 
-O que funciona:
-- Renderização entre as 3 páginas
-- Ambas as páginas Home e Pokedex, enviam informação para a página detalhes
-- As funcionalidade de adicionar item a Pokedex e Remover, funcionam perfeitamente
+### O que não funciona
+- Grid não exibe de forma correta todos os cards
+- Ao adicionar um pokemon ele não desaparece da lista de opções, mas há um aviso de que ele já foi adicionado.
 
-O que não funciona: 
-- A implementação da paginação encontra-se incompleta, no momento em que é necessário a troca de página.
+### Link Surge 
+ puzzling-building.surge.sh
