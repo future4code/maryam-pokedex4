@@ -14,8 +14,20 @@ const BodyHomeConatiner = styled.div`
  row-gap:10px;
  column-gap: 10px;
 `
+const Pagination = styled.div`
+ height: 8vh;
+ background-color: aqua;
+ display: flex;
+ justify-content: space-between;
+`
+const PaginationButton = styled.div`
+display:flex;
+`
+const PaginationItem = styled.div`
+ margin: 0 10px;
+`
 const Home = () => {
-    const pokemonsList= usePokemonList()
+    const [pokemonsList, total, pages, setCurrentPage]= usePokemonList()
 
     const {poke, setPoke} = useContext(GlobalContext)
 
@@ -55,6 +67,18 @@ const Home = () => {
             <BodyHomeConatiner>
                 {pokeList}
             </BodyHomeConatiner>
+            <Pagination>
+                <div> Qtd{total}</div>
+                <PaginationButton>
+                    <PaginationItem>Preview</PaginationItem>
+                    {pages.map((page)=>(
+                        <PaginationItem key={page} onClick={setCurrentPage}>{page}</PaginationItem>
+                    ))}
+                    <PaginationItem>Next</PaginationItem>
+    
+                </PaginationButton>
+
+            </Pagination>
         </div>
     )
 }
