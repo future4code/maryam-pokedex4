@@ -10,7 +10,6 @@ Nome dos integrantes:
 - Detalhes dos pokemons
 - Histórico de pokemons adicionados
 - Exibição em geral
-
 ### O que não funciona
 - Grid não exibe de forma correta todos os cards
 - Ao adicionar um pokemon ele não desaparece da lista de opções, mas há um aviso de que ele já foi adicionado.

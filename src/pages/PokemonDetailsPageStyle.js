@@ -14,18 +14,9 @@ button{
     height: 60%;
     width: 10%;
     :hover{
-    /* color: white; */
 }
 }
 `
-
-export const GeneralContainer = styled.div`
-/* box-sizing: border-box;
-margin: 0;
-height: 100vh;
-width: 100vw; */
-`
-
 export const ElementContainer = styled.div`
 display: flex;
 flex-direction: row;
@@ -74,7 +65,6 @@ justify-content: space-around;
 align-items: center !important;
 width: 30% !important;
 height: 80%;
-/* border: 1px solid black; */
 img{
     height: 40%;
     width: 40%;
@@ -113,7 +103,6 @@ justify-content: space-around;
 align-items: center;
 width: 30% !important;
 height: 80%;
-/* border: 1px solid black; */
 div{
     box-sizing: border-box;
     display: flex;
