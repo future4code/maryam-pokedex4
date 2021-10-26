@@ -11,11 +11,9 @@ export function usePokemonList() {
   const [loading, setLoading] = useState(true);
 
   function create20ItensObject(response) {
-    console.log(response, "resposta");
     let newObject = [];
     let newArrayOfObjects = [];
     let y = 0;
-    console.log(total);
     for (let i = 0; i < total; i++) {
       if (y < 20 && response[i + 1]) {
         newArrayOfObjects.push(response[i]);
@@ -23,15 +21,12 @@ export function usePokemonList() {
       } else {
         let object = [...newObject, newArrayOfObjects];
         newObject = object;
-        console.log("novo objeto", newObject);
         newArrayOfObjects = [];
         y = 0;
       }
     }
-    console.log(newObject, "este daq");
     setPokemonsList(newObject);
-    console.log(pokemonsList, "lista de pokes");
-    return newObject
+    return newObject;
   }
 
   useEffect(() => {
@@ -45,14 +40,12 @@ export function usePokemonList() {
           arrayPages.push(i);
         }
         setPages(arrayPages);
-        console.log(arrayPages, "novo array paginas");
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error.response, "erro na requisição");
         setLoading(false);
       });
-  },[]);
+  }, []);
 
   return [pokemonsList, total, pages, loading, currentPage, setCurrentPage];
 }

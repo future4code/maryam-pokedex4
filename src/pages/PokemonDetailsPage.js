@@ -15,18 +15,12 @@ import { GlobalContext } from "../Global/GlobalContext";
 const PokemonDetailsPage = () => {
   const { poke, setPoke } = useContext(GlobalContext);
 
-  console.log(poke, "pokemo");
-
   const pathParams = useParams();
   const pokemonDetails = useRequestData(`${BASE_URL}pokemon/${pathParams.id}`);
 
-  // const [pokemonToAdd, setPokemonToAdd] = useState()
-
-  const getTheRequestURL = BASE_URL + 'pokemon/' + pathParams.id
-  const itemToAdd = useRequestData(getTheRequestURL)
-  console.log(itemToAdd)
+  const getTheRequestURL = BASE_URL + "pokemon/" + pathParams.id;
+  const itemToAdd = useRequestData(getTheRequestURL);
   const addToPokedex = () => {
-
     const position = poke.findIndex((item) => {
       return item.name === itemToAdd.name;
     });
@@ -34,20 +28,16 @@ const PokemonDetailsPage = () => {
     const newAdd = [...poke];
 
     const newObject = {
-      name: itemToAdd.name,  
-      url: `${BASE_URL}pokemon/${itemToAdd.id}`
-    }
-
-    console.log(newObject, 'novo objt')
+      name: itemToAdd.name,
+      url: `${BASE_URL}pokemon/${itemToAdd.id}`,
+    };
 
     if (position === -1) {
       newAdd.push({ ...newObject, amount: 1 });
     } else {
       alert("Já adicionado!");
     }
-    console.log(newAdd, "novo adicionado");
     setPoke(newAdd);
-    console.log(poke, 'objeto final')
   };
 
   function captalizeFirstLetter(element) {
@@ -58,7 +48,6 @@ const PokemonDetailsPage = () => {
   function renderPokemonInitialMoveSet() {
     const initialMoveSet = pokemonDetails.moves.map((move) => {
       if (move.version_group_details[0].level_learned_at >= 1) {
-        // console.log(move.move.name);
         return (
           <div>
             <p>{move.version_group_details[0].level_learned_at}</p>
@@ -74,8 +63,6 @@ const PokemonDetailsPage = () => {
         return element;
       }
     });
-
-    // console.log(newArray, "esse array");
     return newArray.slice(0, 5);
   }
 
@@ -83,10 +70,10 @@ const PokemonDetailsPage = () => {
     <div>
       {pokemonDetails ? (
         <>
-          <Header 
-          page="pokemonDetails" 
-          pokemonDetails={pokemonDetails}
-          addToPokedex = {addToPokedex}
+          <Header
+            page="pokemonDetails"
+            pokemonDetails={pokemonDetails}
+            addToPokedex={addToPokedex}
           />
 
           <ElementContainer>

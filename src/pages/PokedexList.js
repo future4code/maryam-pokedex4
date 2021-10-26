@@ -5,25 +5,18 @@ import Header from "../components/Header/Header";
 import styled from "styled-components";
 
 const BodyHomeConatiner = styled.div`
- min-height:90vh;
- width: 100vw;
- display: grid;
- justify-content: left;
- grid-template-columns: repeat(4, minmax(0, 350px));
- grid-template-rows: repeat(auto, 250px);
- margin: 15px;
- /* row-gap: 10px; */
- column-gap: 5px;
-`
+  min-height: 90vh;
+  width: 100vw;
+  display: grid;
+  justify-content: left;
+  grid-template-columns: repeat(4, minmax(0, 350px));
+  grid-template-rows: repeat(auto, 250px);
+  margin: 15px;
+  column-gap: 5px;
+`;
 
 const PokedexList = () => {
   const { poke, setPoke } = useContext(GlobalContext);
-
-  // console.log(pokemonDetails, "detalhes dos pokes");
-
-  useEffect(() =>{
-    console.log(poke, 'lista de pokes')
-  })
 
   const removeItem = (itemToRemove) => {
     const position = poke.findIndex((item) => {
@@ -42,26 +35,26 @@ const PokedexList = () => {
   };
 
   const pokedexList =
-    poke.length === 0
-      ? <h1>Adicione Pokemons</h1>
-      : poke.map((item) => {
-          return (
-            <CardPokedex
-              key={item.name}
-              name={item.name}
-              amount={item.amount}
-              url={item.url}
-              removeItem={() => removeItem(item)}
-            />
-          );
-        });
+    poke.length === 0 ? (
+      <h1>Adicione Pokemons</h1>
+    ) : (
+      poke.map((item) => {
+        return (
+          <CardPokedex
+            key={item.name}
+            name={item.name}
+            amount={item.amount}
+            url={item.url}
+            removeItem={() => removeItem(item)}
+          />
+        );
+      })
+    );
 
   return (
     <div>
       <Header page="pokedex" />
-      <BodyHomeConatiner>
-      {pokedexList}
-      </BodyHomeConatiner>
+      <BodyHomeConatiner>{pokedexList}</BodyHomeConatiner>
     </div>
   );
 };
