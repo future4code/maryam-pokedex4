@@ -15,4 +15,4 @@ Nome dos integrantes:
 - Ao adicionar um pokemon ele não desaparece da lista de opções, mas há um aviso de que ele já foi adicionado.
 
 ### Link Surge 
- unarmed-yam.surge.sh
+  awesome-rate.surge.sh
