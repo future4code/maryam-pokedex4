@@ -1,16 +1,18 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Allan Gilber
+- Leticia Agante
+- Tainá Soares
 
-Link do Surge: www.link.com.br
+### O que funciona
+- Botões de navegação
+- Detalhes dos pokemons
+- Histórico de pokemons adicionados
+- Exibição em geral
+### O que não funciona
+- Grid não exibe de forma correta todos os cards
+- Ao adicionar um pokemon ele não desaparece da lista de opções, mas há um aviso de que ele já foi adicionado.
 
-O que funciona:
-- Item 1
-- Item 2
-
-O que não funciona: 
-- Item 3
-- Item 4
+### Link Surge 
+  awesome-rate.surge.sh
